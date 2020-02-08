@@ -1,0 +1,115 @@
+.card:hover {
+  color: #000103 !important;
+  background: #468ccf;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+#column1 {
+  height: 96vh;
+  width: 20vw;
+  margin: 5px;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  border-radius: 2em;
+}
+#column2 {
+  height: 96vh;
+  width: 70vw;
+  /* border: 1px solid black; */
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  border-radius: 2em;
+}
+#column3 {
+  height: 96vh;
+  width: 6vw;
+  /* border: 1px solid black; */
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  border-radius: 2em;
+}
+
+#section1 {
+  height: 50vh;
+  /* border: 1px solid black; */
+  margin: 5px;
+  border-radius: 2em;
+}
+#section2 {
+  height: 50vh;
+  /* border: 1px solid black; */
+  margin: 5px;
+  border-radius: 2em;
+}
+#section3 {
+  height: 15vh;
+  width: 40vh;
+  border: 5px solid black;
+  margin: 5px;
+  order: 1;
+  align-self: center;
+  justify-content: space-evenly;
+  align-items: stretch;
+  flex-direction: row;
+  border-radius: 2em;
+}
+#section4 {
+  height: 15vh;
+  border: 3px solid black;
+  margin: 5px;
+  order: 2;
+  border-radius: 2em;
+}
+#section5 {
+  height: 30vh;
+  width: 40vh;
+  border: 5px solid black;
+  margin: 5px;
+  order: 3;
+  align-self: center;
+  border-radius: 2em;
+}
+#section6 {
+  height: 15vh;
+  border: 3px solid black;
+  margin: 5px;
+  order: 4;
+  border-radius: 2em;
+}
+#section7 {
+  height: 15vh;
+  width: 40vh;
+  border: 5px solid black;
+  margin: 5px;
+  order: 5;
+  align-self: center;
+  border-radius: 2em;
+}
+#section8 {
+  height: 50vh;
+  border: 5px solid black;
+  margin: 5px;
+  border-radius: 2em;
+}
+#section9 {
+  height: 50vh;
+  border: 5px solid black;
+  margin: 5px;
+  border-radius: 2em;
+}

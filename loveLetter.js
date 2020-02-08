@@ -7,6 +7,32 @@
 //Love Letter can be divided into three stages, the game, a round of the game, and each player's turn within a round.
 //There are four main objects in the game: the individual cards, the deck of cards, each player's hand of cards, and each player's discard pile.
 
+//Alex's suggestion: design each card as a constructer object with inbuilt functions.
+
+function Card(name) {
+  this.name = name;
+}
+
+class Guard extends Card {
+  constructor() {
+    super();
+    this.name = "guard";
+    this.value = 1;
+    this.action = function(opponentHand, opponentDiscard) {
+      //This function resolves the Guard card action. It lets a player guess the card in their opponents hand. If they guess correctly, their opponent discards the card and is out of the game.
+      let playerGuess = prompt("Guess your opponent's card.").value;
+      if (playerGuess === guard.type) {
+        playerGuess = prompt("Cannot guess guard. Try again.").value;
+      }
+      if (playerGuess === opponentHand[0]) {
+        opponentDiscard.push(opponentHand[0]);
+        opponentHand.splice(0, 1);
+        return opponentHand, opponentDiscard;
+      } else return;
+    };
+  }
+}
+
 const guard = { value: 1, type: "guard" };
 const priest = { value: 2, type: "priest" };
 const baron = { value: 3, type: "baron" };
@@ -30,7 +56,7 @@ let deckOfCards = [
   "Princess"
 ];
 
-let player1Hand = [baron, baron];
+let player1Hand = [Guard, Guard];
 
 let player1Discard = [];
 
@@ -54,9 +80,9 @@ function dealCards() {
 
 function endGame() {
   //This function ends the game when a player has no cards in their hand and tries to draw a card.
-  if ((player1Hand.length = 0)) {
+  if (player1Hand === []) {
     console.log("Player 2 wins!");
-  } else if ((player2Hand.length = 0)) {
+  } else if (player2Hand === []) {
     console.log("Player 1 wins!");
   }
 }
@@ -80,30 +106,32 @@ function playCard(
   //This function lets the player play a card by putting it in their discard pile and resolving its action.
   playerDiscard.push(playerHand[chosenCard]);
   playerHand.splice(chosenCard, 1);
-  if (playerDiscard[playerDiscard.length - 1] === guard) {
-    playGuard(opponentHand, opponentDiscard);
-  }
-  //   if (playerDiscard[0] === priest) {
-  //     playPriest(opponentHand);
-  //   }
-  //   if (opponentHand == 0 || playerHand == 0) {
-  //     endGame();
-  //   }
+  playerDiscard[playerDiscard.length - 1].action(opponentHand, opponentDiscard);
+
+  // if (playerDiscard[playerDiscard.length - 1] === Guard) {
+  //   playGuard(opponentHand, opponentDiscard);
+  // }
+  // if (playerDiscard[0] === priest) {
+  //   playPriest(opponentHand);
+  // }
+  // if (opponentHand === [] || playerHand === []) {
+  //   endGame();
+  // }
   return playerHand, opponentHand, playerDiscard, opponentDiscard;
 }
 
-function playGuard(opponentHand, opponentDiscard) {
-  //This function resolves the Guard card action. It lets a player guess the card in their opponents hand. If they guess correctly, their opponent discards the card and is out of the game.
-  let playerGuess = prompt("Guess your opponent's card.");
-  if (playerGuess === guard.type) {
-    playerGuess = prompt("Guess your opponent's card.");
-  }
-  if (playerGuess === opponentHand[0]) {
-    opponentDiscard.push(opponentHand[0]);
-    opponentHand.splice(0, 1);
-    return opponentHand, opponentDiscard;
-  } else return;
-}
+// function playGuard(opponentHand, opponentDiscard) {
+//   //This function resolves the Guard card action. It lets a player guess the card in their opponents hand. If they guess correctly, their opponent discards the card and is out of the game.
+//   let playerGuess = baron; //Enter guessed card here.
+//   if (playerGuess === guard.type) {
+//     playerGuess = prompt("Guess your opponent's card.");
+//   }
+//   if (playerGuess === opponentHand[0]) {
+//     opponentDiscard.push(opponentHand[0]);
+//     opponentHand.splice(0, 1);
+//     return opponentHand, opponentDiscard;
+//   } else return;
+// }
 
 function playPriest(opponentHand) {
   //This function resolves the Priest card action. It lets a player see the card in their opponents hand.
@@ -118,4 +146,6 @@ function playBaron(playerHand, opponentHand, playerDiscard, opponentDiscard) {
   }
 }
 
-drawCard(player1Hand, deckOfCards);
+// console.log(0, player1Hand, player2Hand, player1Discard, player2Discard);
+// playCard(0, player1Hand, player2Hand, player1Discard, player2Discard);
+// console.log(0, player1Hand, player2Hand, player1Discard, player2Discard);
