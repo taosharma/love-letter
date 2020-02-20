@@ -9,97 +9,45 @@
 
 //Alex's suggestion: design each card as a constructer object with inbuilt functions.
 
-//To do: 1. Implement handmaid function so that player is protected. 2. Refactor common play state changes into their own functions. 3. Finish logic for cards.
+//To do: 1. Create a function to check interaction between card types and values. 2. Test game to see if all cards work as intended. 3. Create random deck of cards that includes correct instances of each card.
 
-const { Card, Guard, Priest, Baron } = require("./loveLetterCards.js");
+//Game functions:
 
-const guard1 = new Guard();
-const guard2 = new Guard();
-const priest1 = new Priest();
-const priest2 = new Priest();
-const baron1 = new Baron();
-const baron2 = new Baron();
+const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
+const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
+const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
+const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
+const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
 
-// let deckOfCards = [
-//   guard,
-//   guard,
-//   guard,
-//   guard,
-//   guard,
-//   priest,
-//   priest,
-//   baron,
-//   baron,
-//   "Handmaid",
-//   "Handmaid",
-//   "Prince",
-//   "Prince",
-//   "King",
-//   "Countess",
-//   "Princess"
-// ];
+//Game cards:
 
-let player1Hand = [baron1, guard2];
+const { Card } = require(`./gameMechanics/gameCards/card.js`);
+const { Guard } = require(`./gameMechanics/gameCards/guard.js`);
+const { Priest } = require(`./gameMechanics/gameCards/priest.js`);
+const { Baron } = require(`./gameMechanics/gameCards/baron.js`);
+const { Handmaid } = require(`./gameMechanics/gameCards/handmaid.js`);
+const { Prince } = require(`./gameMechanics/gameCards/prince.js`);
+const { King } = require(`./gameMechanics/gameCards/king.js`);
+const { Countess } = require(`./gameMechanics/gameCards/countess.js`);
+const { Princess } = require(`./gameMechanics/gameCards/princess.js`);
+
+let guard1 = new Guard();
+let guard2 = new Guard();
+let baron1 = new Baron();
+
+let player1Hand = [guard1, guard2];
 
 let player1Discard = [];
 
-let player2Hand = [guard1];
+let player2Hand = [baron1];
 
 let player2Discard = [];
 
 let chosenCard = 0;
 
-function getRandomInt(max) {
-  //Function which can choose a random whole number with a max limit.
-  return Math.floor(Math.random() * max);
-}
-
-function dealCards() {
-  //Function to deal one card to each player from the deck.
-  drawCard(player1Hand);
-  drawCard(player2Hand);
-}
-
-function endGame() {
-  //This function ends the game when a player has no cards in their hand and tries to draw a card.
-  if (player1Hand == []) {
-    console.log("Player 2 wins!");
-  } else if (player2Hand == []) {
-    console.log("Player 1 wins!");
-  }
-}
-
-function drawCard(playerHand, gameDeck) {
-  //This function lets the player take a card from the deck, put it into their hand, and updates the deck accordingly.
-  const drawnCardNumber = getRandomInt(gameDeck.length);
-  const drawnCard = gameDeck[drawnCardNumber];
-  playerHand.push(drawnCard);
-  gameDeck.splice(drawnCardNumber, 1);
-  return playerHand, gameDeck;
-}
-
-function playCard(
-  chosenCard,
-  playerHand,
-  opponentHand,
-  playerDiscard,
-  opponentDiscard
-) {
-  //This function lets the player play a card by putting it in their discard pile and resolving its action.
-  playerDiscard.push(playerHand[chosenCard]);
-  playerHand.splice(chosenCard, 1);
-  playerDiscard[playerDiscard.length - 1].action(
-    playerHand,
-    opponentHand,
-    playerDiscard,
-    opponentDiscard
-  );
-  if (opponentHand == [] || playerHand == []) {
-    endGame();
-  }
-  return playerHand, opponentHand, playerDiscard, opponentDiscard;
-}
-
-// console.log(player1Hand, player2Hand, player1Discard, player2Discard);
 playCard(0, player1Hand, player2Hand, player1Discard, player2Discard);
-console.log(player1Hand, player2Hand, player1Discard, player2Discard);
+
+console.log(player1Hand);
+console.log(player2Hand);
+console.log(player1Discard);
+console.log(player2Discard);
