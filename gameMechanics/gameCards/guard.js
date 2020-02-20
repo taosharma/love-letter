@@ -1,5 +1,5 @@
 const { Card } = require("./card.js");
-const { discardCard }
+const { discardCard } = require("../gameFunctions/discardCard.js");
 
 class Guard extends Card {
   constructor() {

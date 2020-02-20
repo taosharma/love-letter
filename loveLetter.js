@@ -14,7 +14,7 @@
 //Game functions:
 
 const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
-const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
+// const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
 const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
 const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
 const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
