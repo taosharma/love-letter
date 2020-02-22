@@ -15,9 +15,10 @@
 
 const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
 const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
-const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
+// const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
 const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
 const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
+// const { shuffleDeck } = require(`./gameMechanics/gameFunctions/shuffleDeck.js`);
 
 //Game cards:
 
@@ -31,11 +32,36 @@ const { King } = require(`./gameMechanics/gameCards/king.js`);
 const { Countess } = require(`./gameMechanics/gameCards/countess.js`);
 const { Princess } = require(`./gameMechanics/gameCards/princess.js`);
 
-let hands = [[deck.pop()], [deck.pop()]];
+let playerHands = [[], []];
 
-let discards = [[], []];
+let playerDiscards = [[], []];
 
 let turn = 0;
 
-hands[turn];
-discards[turn];
+let deckOfCards = [
+  new Guard(),
+  new Guard(),
+  new Guard(),
+  new Guard(),
+  new Guard(),
+  new Priest(),
+  new Priest(),
+  new Baron(),
+  new Baron(),
+  new Handmaid(),
+  new Handmaid(),
+  new Prince(),
+  new Prince(),
+  new King(),
+  new Countess(),
+  new Princess()
+];
+
+shuffleDeck(deckOfCards);
+drawCard(playerHands, deckOfCards);
+console.log(playerHands);
+
+const object = {
+  value: 1,
+  type: object
+};
