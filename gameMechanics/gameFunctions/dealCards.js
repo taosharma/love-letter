@@ -1,3 +1,5 @@
+const { drawCard } = require("./drawCard.js");
+
 //Function to deal one card to each player from the deck.
 
 function dealCards() {
@@ -6,5 +8,5 @@ function dealCards() {
 }
 
 module.exports = {
-    dealCards
-  };
+  dealCards
+};

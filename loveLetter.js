@@ -9,12 +9,12 @@
 
 //Alex's suggestion: design each card as a constructer object with inbuilt functions.
 
-//To do: 1. Create a function to check interaction between card types and values. 2. Test game to see if all cards work as intended. 3. Create random deck of cards that includes correct instances of each card.
+//To do: 1. Create a function to check interaction between card types and values. 2. Test game to see if all cards work as intended. 3. Create a functionrandom deck of cards that includes correct instances of each card.
 
 //Game functions:
 
 const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
-// const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
+const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
 const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
 const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
 const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
@@ -31,23 +31,11 @@ const { King } = require(`./gameMechanics/gameCards/king.js`);
 const { Countess } = require(`./gameMechanics/gameCards/countess.js`);
 const { Princess } = require(`./gameMechanics/gameCards/princess.js`);
 
-let guard1 = new Guard();
-let guard2 = new Guard();
-let baron1 = new Baron();
+let hands = [[deck.pop()], [deck.pop()]];
 
-let player1Hand = [guard1, guard2];
+let discards = [[], []];
 
-let player1Discard = [];
+let turn = 0;
 
-let player2Hand = [baron1];
-
-let player2Discard = [];
-
-let chosenCard = 0;
-
-playCard(0, player1Hand, player2Hand, player1Discard, player2Discard);
-
-console.log(player1Hand);
-console.log(player2Hand);
-console.log(player1Discard);
-console.log(player2Discard);
+hands[turn];
+discards[turn];
