@@ -11,57 +11,39 @@
 
 //To do: 1. Create a function to check interaction between card types and values. 2. Test game to see if all cards work as intended. 3. Create a functionrandom deck of cards that includes correct instances of each card.
 
+// The command pattern.
+
 //Game functions:
 
 const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
 const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
-// const { drawCard } = require(`./gameMechanics/gameFunctions/drawCard.js`);
 const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
 const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
-// const { shuffleDeck } = require(`./gameMechanics/gameFunctions/shuffleDeck.js`);
+const { Deck } = require(`./gameMechanics/gameFunctions/Deck.js`);
 
-//Game cards:
-
-const { Card } = require(`./gameMechanics/gameCards/card.js`);
-const { Guard } = require(`./gameMechanics/gameCards/guard.js`);
-const { Priest } = require(`./gameMechanics/gameCards/priest.js`);
-const { Baron } = require(`./gameMechanics/gameCards/baron.js`);
-const { Handmaid } = require(`./gameMechanics/gameCards/handmaid.js`);
-const { Prince } = require(`./gameMechanics/gameCards/prince.js`);
-const { King } = require(`./gameMechanics/gameCards/king.js`);
-const { Countess } = require(`./gameMechanics/gameCards/countess.js`);
-const { Princess } = require(`./gameMechanics/gameCards/princess.js`);
-
-let playerHands = [[], []];
+let players = [new Player(), new Player()];
 
 let playerDiscards = [[], []];
 
 let turn = 0;
 
-let deckOfCards = [
-  new Guard(),
-  new Guard(),
-  new Guard(),
-  new Guard(),
-  new Guard(),
-  new Priest(),
-  new Priest(),
-  new Baron(),
-  new Baron(),
-  new Handmaid(),
-  new Handmaid(),
-  new Prince(),
-  new Prince(),
-  new King(),
-  new Countess(),
-  new Princess()
-];
+class Game {
+  // 1. Generate players.
+  // 2. Setup round.
+  // 3. Play round.
+  // 4. Check for winner, else repeat form stage 2.
+}
 
-shuffleDeck(deckOfCards);
-drawCard(playerHands, deckOfCards);
-console.log(playerHands);
+class SetupRound {
+  // 1. Reset player status
+  // 2. Generate deck.
+  // 3. Deal card to each player from deck.
+}
 
-const object = {
-  value: 1,
-  type: object
-};
+class PlayRound {
+  // 1. Player draws a card.
+  // 3. Player plays a card into their discard pile.
+  // 4. Card action is resolved.
+  // 5. End round if all but one player is out or there are no cards in the deck, return winning player.
+  // 6. If the round has not ended, repeat from stage 1.
+}

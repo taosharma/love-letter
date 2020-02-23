@@ -1,0 +1,22 @@
+{
+  "name": "loveletter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loveLetter.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taosharma/loveLetter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taosharma/loveLetter/issues"
+  },
+  "homepage": "https://github.com/taosharma/loveLetter#readme",
+  "dependencies": {
+    "jest": "^25.1.0"
+  }
+}
