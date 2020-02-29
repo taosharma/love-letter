@@ -6,10 +6,6 @@ class Card {
     this.value = value;
     this.action = function action() {};
   }
-
-  // action() {
-
-  // }
 }
 
 module.exports = {

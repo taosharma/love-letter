@@ -26,6 +26,7 @@ class SetupRound {
   // 1. Reset player status
   // 2. Generate deck.
   // 3. Deal card to each player from deck.
+  // 4. Set turn counter to 0
 }
 
 class PlayRound {

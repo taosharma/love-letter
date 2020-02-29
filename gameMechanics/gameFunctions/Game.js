@@ -9,6 +9,7 @@ class Game {
   constructor(numberOfPlayers) {
     this.players = Game.generatePlayers(numberOfPlayers);
     this.deck = null;
+    this.turn = null;
   }
 
   static generatePlayers(numberOfPlayers) {
@@ -25,6 +26,7 @@ class Game {
       player.clearDiscard();
       player.hand.push(this.deck.drawCard());
     }
+    this.turn = 1;
   }
 }
 

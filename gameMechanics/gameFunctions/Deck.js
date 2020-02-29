@@ -1,11 +1,11 @@
-const { Guard } = require(`../gameCards/guard.js`);
-const { Priest } = require(`../gameCards/priest.js`);
-const { Baron } = require(`../gameCards/baron.js`);
-const { Handmaid } = require(`../gameCards/handmaid.js`);
-const { Prince } = require(`../gameCards/prince.js`);
-const { King } = require(`../gameCards/king.js`);
-const { Countess } = require(`../gameCards/countess.js`);
-const { Princess } = require(`../gameCards/princess.js`);
+const { Guard } = require(`../gameCards/Guard.js`);
+const { Priest } = require(`../gameCards/Priest.js`);
+const { Baron } = require(`../gameCards/Baron.js`);
+const { Handmaid } = require(`../gameCards/Handmaid.js`);
+const { Prince } = require(`../gameCards/Prince.js`);
+const { King } = require(`../gameCards/King.js`);
+const { Countess } = require(`../gameCards/Countess.js`);
+const { Princess } = require(`../gameCards/Princess.js`);
 
 class Deck {
   constructor(deckSpecification) {

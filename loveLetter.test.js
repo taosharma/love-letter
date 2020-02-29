@@ -1,42 +1,47 @@
 const Game = require("./gameMechanics/gameFunctions/Game.js");
 const Player = require("./gameMechanics/gameFunctions/Player.js");
-const Deck = require("./gameMechanics/gameFunctions/Deck.js");
-const Card = require("./gameMechanics/gameCards/card.js");
+const { Deck } = require("./gameMechanics/gameFunctions/Deck.js");
+const { Card } = require("./gameMechanics/gameCards/Card.js");
 
-test.skip("New round is initialised correctly", () => {
-  let newGame = new Game();
-  newGame.initialiseRound();
+test("New round is initialised correctly", () => {
+  let game = new Game();
+  game.initialiseRound();
 
-  for (const player of newGame.players) {
+  for (const player of game.players) {
     expect(player.hand.length).toBe(1);
-    expect(player.status).toBe("PLAYING");
+    expect(player.status).toBe("waiting to play");
   }
 });
 
-test.skip("Game is created with correct number of players", () => {
+test("Game is created with correct number of players", () => {
   let game = new Game((numberOfPlayers = 2));
   expect(game.players.length).toBe(2);
-  console.log(game.players);
   for (const player of game.players) {
-    expect(player instanceof Player);
+    expect(player instanceof Player).toBe(true);
   }
 });
 
-test.skip("Players have distinct IDs", () => {
+test("Game is created with players that have distinct IDs", () => {
   let game = new Game((numberOfPlayers = 2));
   const playerIDs = game.players.map(player => player.id);
   const uniquePlayerIDs = new Set(playerIDs);
   expect(uniquePlayerIDs.size).toBe(2);
 });
 
-test.skip("Players status should be 'player created'", () => {
+test("Game is created with players with status 'player created'", () => {
   let game = new Game((numberOfPlayers = 2));
   for (const player of game.players) {
     expect(player.status).toBe("player created");
   }
 });
 
-test.skip("Players status should be 'waiting to play' after initialising a round", () => {
+test("Round is initialised with a deck", () => {
+  let game = new Game((numberOfPlayers = 2));
+  game.initialiseRound();
+  expect(game.deck instanceof Deck).toBe(true);
+});
+
+test("Players status should be 'waiting to play' after initialising a round", () => {
   let game = new Game((numberOfPlayers = 2));
   game.initialiseRound();
   for (const player of game.players) {
@@ -44,15 +49,7 @@ test.skip("Players status should be 'waiting to play' after initialising a round
   }
 });
 
-test.skip("Players do not have any cards in their hand after initialising a round", () => {
-  let game = new Game((numberOfPlayers = 2));
-  game.initialiseRound();
-  for (const player of game.players) {
-    expect(player.hand).toStrictEqual([]);
-  }
-});
-
-test.skip("Players do not have any cards in their discard pile after initialising a round", () => {
+test("Players do not have any cards in their discard pile after initialising a round", () => {
   let game = new Game((numberOfPlayers = 2));
   game.initialiseRound();
   for (const player of game.players) {
@@ -60,26 +57,25 @@ test.skip("Players do not have any cards in their discard pile after initialisin
   }
 });
 
-test("Round is initialised with a deck", () => {
+test("A card is discarded from the deck after initialising a round, and each player has drawn a card", () => {
   let game = new Game((numberOfPlayers = 2));
   game.initialiseRound();
-  expect(game.deck instanceof Deck);
+  expect(game.deck._cards.length).toBe(13);
+  for (const player of game.players) {
+    expect(player.hand.length).toBe(1);
+  }
 });
 
-test.skip("Round is initialised with a deck that contains 16 cards", () => {
+test("Each player has a card in their hand", () => {
   let game = new Game((numberOfPlayers = 2));
   game.initialiseRound();
-  expect(game.deck._cards.length).toBe(16);
+  for (const player of game.players) {
+    expect(player.hand[0] instanceof Card).toBe(true);
+  }
 });
 
-test.skip("A card is discarded from the deck after initialising a round", () => {
+test("Turn counter is set to 1 after initialising a round", () => {
   let game = new Game((numberOfPlayers = 2));
   game.initialiseRound();
-  expect(game.deck._cards.length).toBe(15);
-});
-
-test.skip("Each player has a card in their hand after initialising a round", () => {
-  let game = new Game((numberOfPlayers = 2));
-  game.initialiseRound();
-  expect(game.players[0].hand[0] instanceof Card);
+  expect(game.turn).toBe(1);
 });
