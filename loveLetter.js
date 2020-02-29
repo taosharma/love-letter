@@ -15,18 +15,6 @@
 
 //Game functions:
 
-const { dealCards } = require(`./gameMechanics/gameFunctions/dealCards.js`);
-const { discardCard } = require(`./gameMechanics/gameFunctions/discardCard.js`);
-const { endGame } = require(`./gameMechanics/gameFunctions/endGame.js`);
-const { playCard } = require(`./gameMechanics/gameFunctions/playCard.js`);
-const { Deck } = require(`./gameMechanics/gameFunctions/Deck.js`);
-
-let players = [new Player(), new Player()];
-
-let playerDiscards = [[], []];
-
-let turn = 0;
-
 class Game {
   // 1. Generate players.
   // 2. Setup round.

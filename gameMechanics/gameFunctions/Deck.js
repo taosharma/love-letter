@@ -10,7 +10,7 @@ const { Princess } = require(`../gameCards/princess.js`);
 class Deck {
   constructor(deckSpecification) {
     this._cards = Deck.getInitialDeck(deckSpecification);
-    this.shuffle();
+    this.shuffleDeck();
   }
 
   static getInitialDeck(deckSpecification) {
@@ -23,7 +23,7 @@ class Deck {
     return cards;
   }
 
-  shuffle() {
+  shuffleDeck() {
     for (let i = this._cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * this._cards.length);
       [this._cards[i], this._cards[j]] = [this._cards[j], this._cards[i]];
@@ -34,7 +34,7 @@ class Deck {
     return this._cards.pop();
   }
 
-  string() {
+  showDeckAsString() {
     const card_names = this._cards.map(card => card.name);
     return card_names.reverse().join("\n");
   }
@@ -51,7 +51,7 @@ const deckSpecification = [
   [Princess, 1]
 ];
 
-deck = new Deck(deckSpecification);
-console.log(deck.string());
-console.log(deck.drawCard());
-console.log(deck.string());
+module.exports = {
+  Deck,
+  deckSpecification
+};

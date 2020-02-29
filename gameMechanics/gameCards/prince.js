@@ -1,5 +1,5 @@
 const { Card } = require("./card.js");
-const { discardCard } = require("../gameFunctions/discardCard.js");
+const { discardCard } = require("../gameFunctions/Old Ideas?/discardCard.js");
 // const { drawCard } = require("../gameFunctions/drawCard.js");
 
 class Prince extends Card {
