@@ -8,8 +8,9 @@ function getRangeArray(number) {
 class Game {
   constructor(numberOfPlayers) {
     this.players = Game.generatePlayers(numberOfPlayers);
-    this.deck = null;
-    this.turn = null;
+    this.deck = [];
+    this.round = 0;
+    this.turn = 0;
   }
 
   static generatePlayers(numberOfPlayers) {
@@ -21,15 +22,29 @@ class Game {
     this.deck = new Deck(deckSpecification);
     this.deck.drawCard();
     for (const player of this.players) {
-      player.setStatus("waiting to play");
+      player.setStatus("active");
       player.clearHand();
       player.clearDiscard();
-      player.hand.push(this.deck.drawCard());
+      player.drawCard(this.deck);
     }
+    this.round += 1;
     this.turn = 1;
   }
 
-  playRound() {}
+  playTurn(player, target) {
+    player.drawCard(this.deck);
+    player.playCard(Math.round(Math.random()), player, target);
+    player.setStatus("inactive");
+  }
+
+  playRound() {
+    for (const player of this.players) {
+      if (player.status === "active") {
+        const target = (player.id = 0) ? this.player[1] : this.player[0];
+        this.playTurn(player, target);
+      }
+    }
+  }
 }
 
 module.exports = Game;

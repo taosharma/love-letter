@@ -34,9 +34,9 @@ class Deck {
     return this._cards.pop();
   }
 
-  showDeckAsString() {
-    const card_names = this._cards.map(card => card.name);
-    return card_names.reverse().join("\n");
+  showDeckString() {
+    const cards = this._cards.map(card => card.name);
+    return cards.reverse().join("\n");
   }
 }
 
