@@ -1,4 +1,4 @@
-const { Card } = require("./card.js");
+const { Card } = require("./Card.js");
 const { discardCard } = require("../gameFunctions/Old Ideas?/discardCard.js");
 
 class Guard extends Card {

@@ -8,15 +8,15 @@ class Player {
   }
 
   setStatus(status) {
-    return (this.status = status);
+    this.status = status;
   }
 
   clearHand() {
-    return (this.hand = []);
+    this.hand = [];
   }
 
   clearDiscard() {
-    return (this.discard = []);
+    this.discard = [];
   }
 }
 

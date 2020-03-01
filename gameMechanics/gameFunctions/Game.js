@@ -28,6 +28,8 @@ class Game {
     }
     this.turn = 1;
   }
+
+  playRound() {}
 }
 
 module.exports = Game;

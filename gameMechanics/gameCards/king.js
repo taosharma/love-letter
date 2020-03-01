@@ -1,4 +1,4 @@
-const { Card } = require("./card.js");
+const { Card } = require("./Card.js");
 
 class King extends Card {
   constructor() {
