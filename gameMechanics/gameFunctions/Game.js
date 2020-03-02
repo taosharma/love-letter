@@ -27,16 +27,17 @@ class Game {
       player.clearDiscard();
       player.drawCard(this.deck);
     }
-    this.round += 1;
+    this.round++;
     this.turn = 1;
   }
 
   playTurn(player, target) {
-    console.log(player, target);
     player.drawCard(this.deck);
-    player.playTurn(Math.round(Math.random()), player, target);
-    player.setStatus("inactive");
     console.log(player, target);
+    player.playTurn(Math.round(Math.random()), player, target, this.deck);
+    console.log(player, target);
+    player.setStatus("inactive");
+    this.turn++;
   }
 
   playRound() {

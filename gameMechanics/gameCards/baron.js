@@ -17,7 +17,7 @@ class Baron extends Card {
       if (player.hand[0].value > target.hand[0].value) {
         target.discardCard();
       }
-      if (player.hand[0].value > target.hand[0].value) {
+      if (player.hand[0].value < target.hand[0].value) {
         player.discardCard();
       }
     };

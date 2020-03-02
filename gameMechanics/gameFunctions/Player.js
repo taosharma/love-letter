@@ -33,23 +33,23 @@ class Player {
     this.discard.push(this.hand.pop);
   }
 
-  playCard(card, player, target) {
+  playCard(card, player, target, deck) {
     this.discard.push(this.hand[card]);
     this.hand.splice(card, 1);
     this.discard[this.discard.length - 1].action(player, target);
   }
 
-  playTurn(card, player, target) {
+  playTurn(card, player, target, deck) {
     if (this.hand.includes((Countess && King) || (Countess && Prince))) {
       this.playCard(this.hand.indexOf(Countess), player, target);
     } else if (this.hand.includes(Princess)) {
       this.hand.indexOf(Princess) === 0
-        ? this.playCard(1, player, target)
-        : this.playCard(0, player, target);
+        ? this.playCard(1, player, target, deck)
+        : this.playCard(0, player, target, deck);
     } else if (card === 0) {
-      this.playCard(0, player, target);
+      this.playCard(0, player, target, deck);
     } else {
-      this.playCard(1, player, target);
+      this.playCard(1, player, target, deck);
     }
   }
 

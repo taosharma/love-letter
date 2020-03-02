@@ -6,12 +6,12 @@ discard their card and draw a new card from the game deck. */
 class Prince extends Card {
   constructor() {
     super("Prince", 5);
-    this.action = function playPrince(player, target) {
+    this.action = function playPrince(player, target, deck) {
       if (target.protected === true) {
         return;
       }
       target.discardCard();
-      target.drawCard();
+      target.drawCard(deck);
     };
   }
 }

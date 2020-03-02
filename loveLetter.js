@@ -1,19 +1,17 @@
-// Love Letter is a game with sixteen cards and 1-4 players.
-// Each player has 1 card in their hand at all times.
-// On each player's turn they take a card from the face down deck, look at both their cards, and choose one to play.
-// Play continues until the deck is empty or all but one players are eliminated.
-// Each card has a different power which effects something about the game, and triggers when it is played.
+/* Love Letter is a game with sixteen cards and 1-4 players.
+Each player has 1 card in their hand at all times.
+On each player's turn they take a card from the face down deck, look at both their cards, and choose one to play.
+Play continues until the deck is empty or all but one players are eliminated.
+Each card has a different power which effects something about the game, and triggers when it is played.
 
-//Love Letter can be divided into three stages, the game, a round of the game, and each player's turn within a round.
-//There are four main objects in the game: the individual cards, the deck of cards, each player's hand of cards, and each player's discard pile.
+Love Letter can be divided into three stages, the game, a round of the game, and each player's turn within a round.
+There are four main objects in the game: the individual cards, the deck of cards, each player's hand of cards, and each player's discard pile.
 
-//Alex's suggestion: design each card as a constructer object with inbuilt functions.
+Alex's suggestion: design each card as a constructer object with inbuilt functions.
 
-//To do: 1. Create a function to check interaction between card types and values. 2. Test game to see if all cards work as intended. 3. Create a functionrandom deck of cards that includes correct instances of each card.
+The command pattern. */
 
-// The command pattern.
-
-//Game functions:
+// Game functions:
 
 /* Game
   1. Generate players.
@@ -34,3 +32,6 @@ SetupRound
   4. Card action is resolved.
   5. End round if all but one player is out or there are no cards in the deck, return winning player.
   6. If the round has not ended, repeat from stage 1. */
+
+/* 
+To do: 1. Set player status to be inactive when they are out of the round. 2. Fix Princess logic so that it can't be played. 3. Test Countess logic is working - it probably isn't! */
