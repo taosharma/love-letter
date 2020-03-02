@@ -1,5 +1,11 @@
 const { Card } = require("./Card.js");
-const { discardCard } = require("../gameFunctions/Old Ideas?/discardCard.js");
+const { Priest } = require(`./Priest.js`);
+const { Baron } = require(`./Baron.js`);
+const { Handmaid } = require(`./Handmaid.js`);
+const { Prince } = require(`./Prince.js`);
+const { King } = require(`./King.js`);
+const { Countess } = require(`./Countess.js`);
+const { Princess } = require(`./Princess.js`);
 
 /*This function resolves the Guard card action. It lets a player guess the card in their opponents hand. If they guess correctly, their opponent discards the card and is out of the game.*/
 

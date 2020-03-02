@@ -32,15 +32,17 @@ class Game {
   }
 
   playTurn(player, target) {
+    console.log(player, target);
     player.drawCard(this.deck);
-    player.playCard(Math.round(Math.random()), player, target);
+    player.playTurn(Math.round(Math.random()), player, target);
     player.setStatus("inactive");
+    console.log(player, target);
   }
 
   playRound() {
     for (const player of this.players) {
       if (player.status === "active") {
-        const target = (player.id = 0) ? this.player[1] : this.player[0];
+        const target = player.id === 0 ? this.players[1] : this.players[0];
         this.playTurn(player, target);
       }
     }

@@ -1,20 +1,15 @@
 const { Card } = require("./Card.js");
 
+/* This function resolves the King card action. The player swaps their hand with their opponent. */
+
 class King extends Card {
   constructor() {
     super("King", 6);
-    this.action = function playKing(
-      playerHand,
-      opponentHand,
-      playerDiscard,
-      opponentDiscard,
-      gameDeck
-    ) {
-      // This function resolves the King card action. The player swaps their hand with their opponent.
-      playerHand.push(opponentHand[0]);
-      opponentHand.push(playerHand[0]);
-      playerHand.splice(0, 1);
-      opponentHand.splice(0, 1);
+    this.action = function playKing(player, target) {
+      player.hand.push(target.hand[0]);
+      target.hand.push(player.hand[0]);
+      player.hand.splice(0, 1);
+      target.hand.splice(0, 1);
     };
   }
 }

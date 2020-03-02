@@ -15,24 +15,22 @@
 
 //Game functions:
 
-class Game {
-  // 1. Generate players.
-  // 2. Setup round.
-  // 3. Play round.
-  // 4. Check for winner, else repeat form stage 2.
-}
+/* Game
+  1. Generate players.
+  2. Setup round.
+  3. Play round.
+  4. Check for winner, else repeat form stage 2. */
 
-class SetupRound {
-  // 1. Reset player status
-  // 2. Generate deck.
-  // 3. Deal card to each player from deck.
-  // 4. Set turn counter to 0
-}
+/* 
+SetupRound
+  1. Reset player status
+  2. Generate deck.
+  3. Deal card to each player from deck.
+  4. Set turn counter to 0 */
 
-class PlayRound {
-  // 1. Player draws a card.
-  // 3. Player plays a card into their discard pile.
-  // 4. Card action is resolved.
-  // 5. End round if all but one player is out or there are no cards in the deck, return winning player.
-  // 6. If the round has not ended, repeat from stage 1.
-}
+/* PlayRound
+  1. Player draws a card.
+  3. Player plays a card into their discard pile.
+  4. Card action is resolved.
+  5. End round if all but one player is out or there are no cards in the deck, return winning player.
+  6. If the round has not ended, repeat from stage 1. */

@@ -1,5 +1,4 @@
 const { Card } = require("./Card.js");
-const { discardCard } = require("../gameFunctions/Old Ideas?/discardCard.js");
 
 /* This function resolves the Baron card action. It lets a player compare the value of the remaining card in their 
 hand with the value of the card in their opponent's hand. Whichever player has the lower value discards their card 
@@ -15,10 +14,10 @@ class Baron extends Card {
       }
       console.log(player.showHandString());
       console.log(target.showHandString());
-      if (player.hand[1].value > target.hand[0].value) {
+      if (player.hand[0].value > target.hand[0].value) {
         target.discardCard();
       }
-      if (player.hand[1].value > target.hand[0].value) {
+      if (player.hand[0].value > target.hand[0].value) {
         player.discardCard();
       }
     };

@@ -1,3 +1,8 @@
+const { Prince } = require(`../gameCards/Prince.js`);
+const { King } = require(`../gameCards/King.js`);
+const { Countess } = require(`../gameCards/Countess.js`);
+const { Princess } = require(`../gameCards/Princess.js`);
+
 class Player {
   constructor(id) {
     this.id = id;
@@ -29,14 +34,22 @@ class Player {
   }
 
   playCard(card, player, target) {
-    if (card === 0) {
-      this.hand[0].action(player, target);
-      this.discard.push(this.hand[0]);
-      this.hand.splice(0, 1);
+    this.discard.push(this.hand[card]);
+    this.hand.splice(card, 1);
+    this.discard[this.discard.length - 1].action(player, target);
+  }
+
+  playTurn(card, player, target) {
+    if (this.hand.includes((Countess && King) || (Countess && Prince))) {
+      this.playCard(this.hand.indexOf(Countess), player, target);
+    } else if (this.hand.includes(Princess)) {
+      this.hand.indexOf(Princess) === 0
+        ? this.playCard(1, player, target)
+        : this.playCard(0, player, target);
+    } else if (card === 0) {
+      this.playCard(0, player, target);
     } else {
-      this.hand[1].action(player, target);
-      this.discard.push(this.hand[1]);
-      this.hand.splice(1, 1);
+      this.playCard(1, player, target);
     }
   }
 
