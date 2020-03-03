@@ -30,7 +30,7 @@ class Player {
   }
 
   discardCard() {
-    this.discard.push(this.hand.pop);
+    this.discard.push(this.hand.pop());
   }
 
   playCard(card, player, target, deck) {

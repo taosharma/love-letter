@@ -12,8 +12,7 @@ class Baron extends Card {
       if (target.protected === true) {
         return;
       }
-      console.log(player.showHandString());
-      console.log(target.showHandString());
+
       if (player.hand[0].value > target.hand[0].value) {
         target.discardCard();
       }

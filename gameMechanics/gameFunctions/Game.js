@@ -33,9 +33,7 @@ class Game {
 
   playTurn(player, target) {
     player.drawCard(this.deck);
-    console.log(player, target);
     player.playTurn(Math.round(Math.random()), player, target, this.deck);
-    console.log(player, target);
     player.setStatus("inactive");
     this.turn++;
   }

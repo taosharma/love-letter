@@ -5,9 +5,7 @@ const { Card } = require("./Card.js");
 class Princess extends Card {
   constructor() {
     super("Princess", 8);
-    this.action = function playPrincess() {
-      console.log("Princess played");
-    };
+    this.action = function playPrincess() {};
   }
 }
 

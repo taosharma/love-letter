@@ -6,9 +6,7 @@ has in their hand. */
 class Priest extends Card {
   constructor() {
     super("Priest", 2);
-    this.action = function playPriest(player, target) {
-      console.log(target.showHandString());
-    };
+    this.action = function playPriest(player, target) {};
   }
 }
 

@@ -22,6 +22,7 @@ class Guard extends Card {
       const guess = guesses[randomIndex];
       if (target.hand[0] instanceof guess) {
         target.discardCard();
+        return;
       }
     };
   }
