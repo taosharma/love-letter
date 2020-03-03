@@ -36,7 +36,7 @@ class Player {
   playCard(card, player, target, deck) {
     this.discard.push(this.hand[card]);
     this.hand.splice(card, 1);
-    this.discard[this.discard.length - 1].action(player, target);
+    this.discard[this.discard.length - 1].action(player, target, deck);
   }
 
   playTurn(card, player, target, deck) {

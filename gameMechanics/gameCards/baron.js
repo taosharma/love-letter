@@ -10,14 +10,22 @@ class Baron extends Card {
     super("Baron", 3);
     this.action = function playBaron(player, target) {
       if (target.protected === true) {
+        console.log(
+          `Player ${player.id} plays a Baron, but Player ${target.id} is protected.`
+        );
         return;
       }
-      console.log(player.showHandString());
-      console.log(target.showHandString());
+
       if (player.hand[0].value > target.hand[0].value) {
+        console.log(
+          `Player ${player.id} plays a Baron. The ${player.hand[0].type} in their hand has a greater value than the ${target.hand[0].value} in Player ${target.id}'s hand. Player ${target.id} must discard their hand`
+        );
         target.discardCard();
       }
       if (player.hand[0].value < target.hand[0].value) {
+        console.log(
+          `Player ${player.id} plays a Baron. The ${player.hand[0].type} in their hand has a lesser value than the ${target.hand[0].value} in Player ${target.id}'s hand. Player ${player.id} must discard their hand`
+        );
         player.discardCard();
       }
     };

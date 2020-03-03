@@ -7,7 +7,11 @@ class Priest extends Card {
   constructor() {
     super("Priest", 2);
     this.action = function playPriest(player, target) {
-      console.log(target.showHandString());
+      console.log(
+        `Player ${player.id} plays a Priest, and sees that Player ${
+          target.id
+        } has a ${target.showHandString()}.`
+      );
     };
   }
 }

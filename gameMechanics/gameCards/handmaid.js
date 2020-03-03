@@ -6,8 +6,10 @@ class Handmaid extends Card {
   constructor() {
     super("Handmaid", 4);
     this.action = function playHandmaid(player, target) {
+      console.log(
+        `Player ${player.id} plays a Handmaid. They are protected by the Handmaid until their next turn.`
+      );
       player.protected = true;
-      console.log(`Player ${player.id} by Handmaid until next turn.`);
     };
   }
 }

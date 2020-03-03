@@ -32,12 +32,25 @@ class Game {
   }
 
   playTurn(player, target) {
+    console.log(`Turn number: ${this.turn}.`);
+    console.log(
+      `Player ${player.id} starts with a ${player.hand[0].type} in their hand.`
+    );
+    console.log(
+      `Player ${target.id} starts with a ${target.hand[0].type} in their hand.`
+    );
     player.drawCard(this.deck);
-    console.log(player, target);
+    console.log(`Player ${player.id} draws a ${player.hand[1].type}.`);
     player.playTurn(Math.round(Math.random()), player, target, this.deck);
-    console.log(player, target);
     player.setStatus("inactive");
+    console.log(
+      `Player ${player.id} ends with a ${player.hand[0].type} in their hand.`
+    );
+    console.log(
+      `Player ${target.id} ends with a ${target.hand[0].type} in their hand.`
+    );
     this.turn++;
+    console.log(`End turn.`);
   }
 
   playRound() {

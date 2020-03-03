@@ -8,8 +8,14 @@ class Prince extends Card {
     super("Prince", 5);
     this.action = function playPrince(player, target, deck) {
       if (target.protected === true) {
+        console.log(
+          `Player ${player.id} plays a Prince, but Player ${target.id} is protected.`
+        );
         return;
       }
+      console.log(
+        `Player ${player.id} plays a Prince. Player ${target.id} discards their hand and draws a new card from the deck.`
+      );
       target.discardCard();
       target.drawCard(deck);
     };
