@@ -1,18 +1,10 @@
-const { Card } = require("./Card.js");
-const { Priest } = require(`./Priest.js`);
-const { Baron } = require(`./Baron.js`);
-const { Handmaid } = require(`./Handmaid.js`);
-const { Prince } = require(`./Prince.js`);
-const { King } = require(`./King.js`);
-const { Countess } = require(`./Countess.js`);
-const { Princess } = require(`./Princess.js`);
+const { Card } = require("../gameMechanics/gameCards/Card");
+const { Priest } = require("../gameMechanics/gameCards/Priest");
 
-/*This function resolves the Guard card action. It lets a player guess the card in their opponents hand. If they guess correctly, their opponent discards the card and is out of the game.*/
-
-const guesses = [Priest, Baron, Handmaid, Prince, King, Countess, Princess];
+const guesses = [Priest];
 let randomIndex = Math.floor(Math.random() * guesses.length);
 
-class Guard extends Card {
+class TestGuard extends Card {
   constructor() {
     super("Guard", 1);
     this.action = function playGuard(player, target) {
@@ -37,6 +29,4 @@ class Guard extends Card {
   }
 }
 
-module.exports = {
-  Guard
-};
+module.exports = TestGuard;

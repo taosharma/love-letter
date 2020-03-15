@@ -5,7 +5,8 @@ Play continues until the deck is empty or all but one players are eliminated.
 Each card has a different power which effects something about the game, and triggers when it is played.
 
 Love Letter can be divided into three stages, the game, a round of the game, and each player's turn within a round.
-There are four main objects in the game: the individual cards, the deck of cards, each player's hand of cards, and each player's discard pile.
+There are four main objects in the game: the individual cards, the deck of cards, each player's hand of cards, and each player's 
+discard pile.
 
 Alex's suggestion: design each card as a constructer object with inbuilt functions.
 
@@ -34,4 +35,11 @@ SetupRound
   6. If the round has not ended, repeat from stage 1. */
 
 /* 
-To do: 1. Set player status to be inactive when they are out of the round. 2. Fix Princess logic so that it can't be played. 3. Test Countess logic is working - it probably isn't! */
+To do: 1. Set player status to be inactive when they are out of the round. 2. Fix Princess logic so that it can't be played.
+ 3. Test Countess logic is working - it probably isn't! */
+
+const Game = require("./gameMechanics/gameFunctions/Game.js");
+
+const testGame = new Game(2);
+testGame.initialiseRound();
+testGame.playRound();

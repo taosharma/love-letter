@@ -1,22 +1,34 @@
+// The player, the deck and the deck specification that are required to play a game of Love Letter.
+
 const Player = require("./Player.js");
 const { Deck, deckSpecification } = require("./Deck.js");
+
+// A function which returns an array of keys for the specified number.
 
 function getRangeArray(number) {
   return [...Array(number).keys()];
 }
 
+// The game class, which holds the information required to play a game of Love Letter.
+
 class Game {
   constructor(numberOfPlayers) {
-    this.players = Game.generatePlayers(numberOfPlayers);
-    this.deck = [];
-    this.round = 0;
-    this.turn = 0;
+    this.players = this.generatePlayers(numberOfPlayers); // The players expression is an array of all the players in the game.
+    this.deck = []; // The deck expression holds the deck of cards which is used for each round.
+    this.round = 0; // The round expression tracks the number of rounds that have been played.
+    this.turn = 0; // The turn expression tracks the number of turns that have been played in each round.
   }
 
-  static generatePlayers(numberOfPlayers) {
+  // A method which generates the number of players desired for the game, and gives each a unique id:
+
+  generatePlayers(numberOfPlayers) {
     const playerIDs = getRangeArray(numberOfPlayers);
     return playerIDs.map(PlayerID => new Player(PlayerID));
   }
+
+  /*  A method which initialises a round by giving the game a new deck, removing a card from that deck, setting all the players
+ status as active, removing all cards from the player's hands and discard piles, and giving each player a card from the deck. 
+ It also adds one to the round tracker, and sets the turn tracker to 0 for this round.  */
 
   initialiseRound() {
     this.deck = new Deck(deckSpecification);
@@ -28,8 +40,11 @@ class Game {
       player.drawCard(this.deck);
     }
     this.round++;
-    this.turn = 1;
+    this.turn = 0;
   }
+
+  /* A method which takes a single player through their turn. It draws them a card from the deck, calls their own play turn 
+  method, and adds one to the turn tracker. */
 
   playTurn(player, target) {
     console.log(`Turn number: ${this.turn}.`);
@@ -41,23 +56,28 @@ class Game {
     );
     player.drawCard(this.deck);
     console.log(`Player ${player.id} draws a ${player.hand[1].type}.`);
-    player.playTurn(Math.round(Math.random()), player, target, this.deck);
-    player.setStatus("inactive");
+    player.playTurn(Math.round(Math.random()), target, this.deck);
     console.log(
       `Player ${player.id} ends with a ${player.hand[0].type} in their hand.`
     );
-    console.log(
-      `Player ${target.id} ends with a ${target.hand[0].type} in their hand.`
-    );
+    try {
+      console.log(
+        `Player ${target.id} ends with a ${target.hand[0].type} in their hand.`
+      );
+    } catch (error) {}
     this.turn++;
     console.log(`End turn.`);
   }
 
+  /* A method which loops a round of the game, letting each player take a turn if their status is set as active. */
+
   playRound() {
-    for (const player of this.players) {
-      if (player.status === "active") {
-        const target = player.id === 0 ? this.players[1] : this.players[0];
-        this.playTurn(player, target);
+    while (true) {
+      for (const player of this.players) {
+        if (player.status === "active") {
+          const target = player.id === 0 ? this.players[1] : this.players[0];
+          this.playTurn(player, target);
+        }
       }
     }
   }

@@ -1,4 +1,5 @@
 const { Card } = require("./Card.js");
+const { Princess } = require(`./Princess.js`);
 
 /* This function resolves the Prince card action. When the Prince is played, the player's opponent is forced to 
 discard their card and draw a new card from the game deck. */
@@ -17,7 +18,9 @@ class Prince extends Card {
         `Player ${player.id} plays a Prince. Player ${target.id} discards their hand and draws a new card from the deck.`
       );
       target.discardCard();
-      target.drawCard(deck);
+      if (target.discard[target.discard.length - 1] instanceof Princess) {
+        target.setStatus("inactive");
+      } else target.drawCard(deck);
     };
   }
 }
