@@ -54,6 +54,10 @@ class Player {
     this.hand = [];
   }
 
+  incrementScore() {
+    this.score++;
+  }
+
   // A method which clears all cards from a players discard pile.
 
   clearDiscard() {
@@ -75,7 +79,6 @@ class Player {
   // A method which plays a card from the player's hand by putting it in their discard pile and calling that card's ability.
 
   playCard(card, target, deck) {
-    console.log(deck);
     this.discard.push(this.hand[card]);
     this.hand.splice(card, 1);
     this.discard[this.discard.length - 1].action(this, target, deck);
@@ -86,14 +89,15 @@ class Player {
   card. Otherwise, they can player either of the two cards in their hand.  */
 
   playTurn(card, target, deck) {
+    this.protected = false;
     const countessCheck = forceCountess(this.hand);
     const princessCheck = forcePrincess(this.hand);
     if (countessCheck === 0 || countessCheck === 1) {
       console.log("Forced to play Countess!");
-      this.playCard(countessCheck, target);
+      this.playCard(countessCheck, target, deck);
     } else if (princessCheck === 0 || princessCheck === 1) {
       console.log("Forced to not play Princess!");
-      this.playCard(princessCheck, target);
+      this.playCard(princessCheck, target, deck);
     } else if (card === 0) {
       this.playCard(0, target, deck);
     } else {

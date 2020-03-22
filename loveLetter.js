@@ -43,3 +43,4 @@ const Game = require("./gameMechanics/gameFunctions/Game.js");
 const testGame = new Game(2);
 testGame.initialiseRound();
 testGame.playRound();
+console.log(testGame.players);

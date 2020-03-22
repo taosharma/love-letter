@@ -43,8 +43,8 @@ class Game {
     this.turn = 0;
   }
 
-  /* A method which takes a single player through their turn. It draws them a card from the deck, calls their own play turn 
-  method, and adds one to the turn tracker. */
+  /* A method which takes a single player through their turn. It draws them a card from the 
+  deck, calls their own play turn method, and adds one to the turn tracker. */
 
   playTurn(player, target) {
     console.log(`Turn number: ${this.turn}.`);
@@ -57,9 +57,11 @@ class Game {
     player.drawCard(this.deck);
     console.log(`Player ${player.id} draws a ${player.hand[1].type}.`);
     player.playTurn(Math.round(Math.random()), target, this.deck);
-    console.log(
-      `Player ${player.id} ends with a ${player.hand[0].type} in their hand.`
-    );
+    try {
+      console.log(
+        `Player ${player.id} ends with a ${player.hand[0].type} in their hand.`
+      );
+    } catch (error) {}
     try {
       console.log(
         `Player ${target.id} ends with a ${target.hand[0].type} in their hand.`
@@ -72,14 +74,36 @@ class Game {
   /* A method which loops a round of the game, letting each player take a turn if their status is set as active. */
 
   playRound() {
-    while (true) {
-      for (const player of this.players) {
-        if (player.status === "active") {
-          const target = player.id === 0 ? this.players[1] : this.players[0];
-          this.playTurn(player, target);
-        }
-      }
+    while (this.getActivePlayers().length > 1 && this.deck.cards.length > 0) {
+      const turnPointer = this.calculateTurnPointer();
+      const player = this.players[turnPointer];
+      const target =
+        this.players[turnPointer].id === 0 ? this.players[1] : this.players[0];
+      this.playTurn(player, target);
     }
+    if (this.getActivePlayers().length === 1) {
+      const winner = this.getActivePlayers();
+      console.log(`Player ${winner[0].id} wins!`);
+      return winner[0].incrementScore();
+    }
+    const player0CardValue = this.players[0].hand[0].value;
+    const player1CardValue = this.players[1].hand[1].value;
+    if (player0CardValue > player1CardValue) {
+      return this.players[0].incrementScore();
+    } else if (player1CardValue > player0CardValue) {
+      return this.players[1].incrementScore();
+    } else return;
+  }
+
+  getActivePlayers() {
+    const activePlayers = this.players.filter(
+      player => player.status === "active"
+    );
+    return activePlayers;
+  }
+
+  calculateTurnPointer() {
+    return this.turn % this.players.length;
   }
 }
 

@@ -15,7 +15,7 @@ const { TestGuard } = require("./fixtures/testGuard.js");
 
 // Tests for whether a new game has initialised correctly:
 
-describe.skip("Starting a game", () => {
+describe("Starting a game", () => {
   test("Game is created with correct number of players", () => {
     let game = new Game(2);
     expect(game.players.length).toBe(2);
@@ -41,7 +41,7 @@ describe.skip("Starting a game", () => {
 
 // Tests for whether a new round has initialised correctly:
 
-describe.skip("Initialising a round", () => {
+describe("Initialising a round", () => {
   //Integration test:
 
   test("New round is initialised correctly", () => {
@@ -103,7 +103,7 @@ describe.skip("Initialising a round", () => {
 
 // Tests for whether a new round is being played correctly:
 
-describe.skip("Playing a round", () => {
+describe("Playing a round", () => {
   // Tests for whether a round is being played correctly:
 
   test("A round ends when it has been won by a player in the game, and their score has increased.", () => {
@@ -113,26 +113,12 @@ describe.skip("Playing a round", () => {
     const winningPlayer = game.players.filter(player => player.score > 0);
     expect(winningPlayer[0].score).toBe(1);
   });
-
-  test.skip("A round begins with the active player drawing a card from the deck", () => {
-    let game = new Game(2);
-    game.initialiseRound(deckSpecification);
-    game.playRound();
-    expect(game.players[0].hand.length).toBe(2);
-  });
-
-  test.skip("A round includes the active player playing a card from their hand", () => {
-    let game = new Game(2);
-    game.initialiseRound(deckSpecification);
-    game.playRound();
-    expect(game.players[0].hand.length).toBe(2);
-  });
 });
 
 // Tests, using fixtures, for whether each card is working correctly:
 
 describe("Cards working correctly", () => {
-  test.skip("When a player correctly guesses their target's hand using the Guard, their target discards their hand and their status is set to inactive", () => {
+  test("When a player correctly guesses their target's hand using the Guard, their target discards their hand and their status is set to inactive", () => {
     let game = new Game(2);
     const actualPlayer = game.players[0];
     const actualTarget = game.players[1];
@@ -143,7 +129,7 @@ describe("Cards working correctly", () => {
     expect(actualTarget.status).toBe("inactive");
   });
 
-  test.skip("When a player incorrectly guesses their target's hand using the Guard, the target does not discard their hand and their status remains as active", () => {
+  test("When a player incorrectly guesses their target's hand using the Guard, the target does not discard their hand and their status remains as active", () => {
     let game = new Game(2);
     const actualPlayer = game.players[0];
     const actualTarget = game.players[1];
@@ -154,7 +140,7 @@ describe("Cards working correctly", () => {
     expect(actualTarget.status).toBe("active");
   });
 
-  test.skip("When a player has a Countess and King, they are forced to play the Countess", () => {
+  test("When a player has a Countess and King, they are forced to play the Countess", () => {
     let game = new Game(1);
     const actualPlayer = game.players[0];
     actualPlayer.hand.push(new Countess(), new King());
@@ -162,7 +148,7 @@ describe("Cards working correctly", () => {
     expect(actualPlayer.hand[0] instanceof King).toBe(true);
   });
 
-  test.skip("When a player has a Countess and Prince, they are forced to play the Countess", () => {
+  test("When a player has a Countess and Prince, they are forced to play the Countess", () => {
     let game = new Game(1);
     const actualPlayer = game.players[0];
     actualPlayer.hand.push(new Countess(), new Prince());
@@ -170,7 +156,7 @@ describe("Cards working correctly", () => {
     expect(actualPlayer.hand[0] instanceof Prince).toBe(true);
   });
 
-  test.skip("When a player has the Princess in their hand, they are forced to play their other card", () => {
+  test("When a player has the Princess in their hand, they are forced to play their other card", () => {
     let game = new Game(1);
     const actualPlayer = game.players[0];
     actualPlayer.hand.push(new Princess(), new Countess());
@@ -180,7 +166,7 @@ describe("Cards working correctly", () => {
 
   test("When a player plays a Prince, their target discards a card a draws a new card from the deck", () => {
     let game = new Game(2);
-    game.deck = new Deck();
+    game.deck = new Deck(deckSpecification);
     const actualPlayer = game.players[0];
     const actualTarget = game.players[1];
     actualPlayer.hand.push(new Prince());

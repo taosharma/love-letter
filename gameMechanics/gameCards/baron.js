@@ -26,7 +26,7 @@ class Baron extends Card {
       }
       if (player.hand[0].value < target.hand[0].value) {
         console.log(
-          `Player ${player.id} plays a Baron. The ${player.hand[0].type} in their hand has a lesser value than the ${target.hand[0].value} in Player ${target.id}'s hand. Player ${player.id} must discard their hand`
+          `Player ${player.id} plays a Baron. The ${player.hand[0].type} in their hand has a lesser value than the ${target.hand[0].type} in Player ${target.id}'s hand. Player ${player.id} must discard their hand`
         );
         player.discardCard();
         player.setStatus("inactive");
