@@ -1,31 +1,35 @@
-// Require the Express module so that it can be used to manage requests to and responses from the server.
-
 const express = require("express");
-
-// Name the local port where the server can be found. To be replaced with environment variables in he future.
 
 const PORT = 5000;
 
-// Assign the express app to a variable for use.
-
 const app = express();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
 
-// Require the game router from the routes folder. This is where game logic requests are sent, and will potentially be split int he future.
-
-const gameRouter = require("./routes/game");
-
-/* ".use" tells Express to use middleware. Middleware can be custom made or downloaded ready to use as an npm module. 
- This code simply console logs the requests that are made to the server.*/
-
-app.use((request, response, next) => {
-  console.log(`${request.method} requested received on ${request.url}`);
-  next();
-});
+const cors = require("cors");
+app.use(cors());
 
 app.use(express.json());
 
-app.use("/game", gameRouter);
+let numberOfPlayers = 0;
 
-app.listen(PORT, () => {
-  console.log(`Listening on PORT ${PORT}.`);
+function assignRoom() {
+  numberOfPlayers++;
+  if (numberOfPlayers % 2 === 0) {
+    return 2;
+  } else return 1;
+}
+const game = io.of("/game");
+
+game.on("connection", (socket) => {
+  socket.join(`${assignRoom()}`);
+  let room = Object.keys(socket.adapter.sids[socket.id]);
+  console.log(`Player has joined room ${room[0]}`);
+
+  game.to(`${room[0]}`).emit("joinedRoom", {
+    message: `You have joined room ${room[0]}.`,
+    id: room[0],
+  });
 });
+
+server.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
