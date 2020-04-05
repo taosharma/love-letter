@@ -9,13 +9,21 @@ const io = require("socket.io")(server);
 const cors = require("cors");
 app.use(cors());
 
+const {
+  createNewGame,
+  initialiseRound,
+  getPlayer,
+  getDeck,
+  playCard,
+} = require("./models/game");
+
 let numberOfPlayers = 0;
 
 function assignRoom() {
   numberOfPlayers++;
   if (numberOfPlayers % 2 === 0) {
-    return 2;
-  } else return 1;
+    return 1;
+  } else return 0;
 }
 const game = io.of("/game");
 
@@ -26,7 +34,17 @@ game.on("connection", (socket) => {
 
   game.to(`${room[0]}`).emit("joinedRoom", {
     message: `You have joined room ${room[0]}.`,
-    id: room[0],
+    id: Number(room[0]),
+  });
+
+  socket.on("startNewGame", (socket) => {
+    console.log(`Player ${socket.id} has started a new game`);
+    const newGame = createNewGame();
+    initialiseRound(newGame);
+    game.emit("updateGame", {
+      players: [getPlayer(newGame, 0), getPlayer(newGame, 1)],
+      deck: getDeck(newGame),
+    });
   });
 });
 
