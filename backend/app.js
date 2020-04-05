@@ -9,8 +9,6 @@ const io = require("socket.io")(server);
 const cors = require("cors");
 app.use(cors());
 
-app.use(express.json());
-
 let numberOfPlayers = 0;
 
 function assignRoom() {
