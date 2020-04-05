@@ -3,10 +3,15 @@ import React from "react";
 import Card from "../Card";
 
 function Hand({ cards, playCard }) {
+  console.log("hello");
   return (
     <section>
+      Player Hand:
       {cards.map((card) => (
-        <Card card={card} playCard={playCard} />
+        <section>
+          <Card card={card} />
+          <button onClick={playCard}>Play Card</button>
+        </section>
       ))}
     </section>
   );

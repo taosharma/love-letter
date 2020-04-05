@@ -7,7 +7,6 @@ function Card({ card, playCard }) {
       <p>
         Type: {type} Value: {value} Action: {action}
       </p>
-      <button onClick={playCard}>Play Card</button>
     </section>
   );
 }

@@ -1,0 +1,28 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  min-height: 100vh;
+  min-width: 100vh;
+  text-align: center;
+}
+
+.playerContainer {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.opponentContainer {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.deckContainer {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.gameLogContainer {
+  grid-column: 1;
+  grid-row: 1;
+}
