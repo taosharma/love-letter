@@ -1,37 +1,31 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+// Require the Express module so that it can be used to manage requests to and responses from the server.
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const express = require("express");
 
-var app = express();
+// Name the local port where the server can be found. To be replaced with environment variables in he future.
 
-app.use(logger("dev"));
+const PORT = 5000;
+
+// Assign the express app to a variable for use.
+
+const app = express();
+
+// Require the game router from the routes folder. This is where game logic requests are sent, and will potentially be split int he future.
+
+const gameRouter = require("./routes/game");
+
+/* ".use" tells Express to use middleware. Middleware can be custom made or downloaded ready to use as an npm module. 
+ This code simply console logs the requests that are made to the server.*/
+
+app.use((request, response, next) => {
+  console.log(`${request.method} requested received on ${request.url}`);
+  next();
+});
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/game", gameRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.listen(PORT, () => {
+  console.log(`Listening on PORT ${PORT}.`);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
-
-module.exports = app;
