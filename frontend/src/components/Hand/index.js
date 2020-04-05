@@ -3,7 +3,6 @@ import React from "react";
 import Card from "../Card";
 
 function Hand({ cards, playCard }) {
-  console.log("hello");
   return (
     <section>
       Player Hand:
