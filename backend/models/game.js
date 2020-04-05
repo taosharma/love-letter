@@ -15,8 +15,8 @@ function initialiseRound(game) {
 // The getPlayer function gets all of the information for specific player.
 
 function getPlayer(game, index) {
-  const { status, score, hand, discard, protected } = game.players[index];
-  const player = { status, score, hand, discard, protection: protected };
+  const { id, status, score, hand, discard, protected } = game.players[index];
+  const player = { id, status, score, hand, discard, protection: protected };
   return player;
 }
 
@@ -25,6 +25,12 @@ function getPlayer(game, index) {
 function getDeck(game) {
   const { deck } = game;
   return deck;
+}
+
+// The drawCard function allows a player to draw a card from the deck.
+
+function drawCard(game, index) {
+  game.players[index].drawCard(game.deck);
 }
 
 // The play card function plays the card from a player's hand that they have chosen.
@@ -43,5 +49,6 @@ module.exports = {
   initialiseRound,
   getPlayer,
   getDeck,
+  drawCard,
   playCard,
 };

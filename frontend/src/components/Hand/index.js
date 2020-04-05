@@ -6,10 +6,10 @@ function Hand({ cards, playCard }) {
   return (
     <section>
       Player Hand:
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <section>
           <Card card={card} />
-          <button onClick={playCard}>Play Card</button>
+          <button onClick={() => playCard(index)}>Play Card</button>
         </section>
       ))}
     </section>

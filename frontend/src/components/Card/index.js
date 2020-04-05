@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({ card, playCard }) {
+function Card({ card }) {
   const { type, value, action } = card;
   return (
     <section>
@@ -17,7 +17,6 @@ Card.defaultProps = {
     value: "default value",
     action: "default action",
   },
-  playCard: () => console.log("You have clicked 'playCard'"),
 };
 
 export default Card;

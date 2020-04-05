@@ -14,10 +14,12 @@ const {
   initialiseRound,
   getPlayer,
   getDeck,
+  drawCard,
   playCard,
 } = require("./models/game");
 
 let numberOfPlayers = 0;
+let currentGame = null;
 
 function assignRoom() {
   numberOfPlayers++;
@@ -44,6 +46,25 @@ game.on("connection", (socket) => {
     game.emit("updateGame", {
       players: [getPlayer(newGame, 0), getPlayer(newGame, 1)],
       deck: getDeck(newGame),
+    });
+    currentGame = newGame;
+  });
+
+  socket.on("drawCard", (socket) => {
+    console.log(`Player ${socket.id} has drawn a card`);
+    drawCard(currentGame, socket.id);
+    game.emit("updateGame", {
+      players: [getPlayer(currentGame, 0), getPlayer(currentGame, 1)],
+      deck: getDeck(currentGame),
+    });
+  });
+
+  socket.on("playCard", (socket) => {
+    console.log(`Player ${socket.id} has played a card`);
+    playCard(currentGame, socket.card);
+    game.emit("updateGame", {
+      players: [getPlayer(currentGame, 0), getPlayer(currentGame, 1)],
+      deck: getDeck(currentGame),
     });
   });
 });
