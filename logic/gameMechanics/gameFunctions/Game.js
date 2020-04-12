@@ -23,7 +23,7 @@ class Game {
 
   generatePlayers(numberOfPlayers) {
     const playerIDs = getRangeArray(numberOfPlayers);
-    return playerIDs.map(PlayerID => new Player(PlayerID));
+    return playerIDs.map((PlayerID) => new Player(PlayerID));
   }
 
   /*  A method which initialises a round by giving the game a new deck, removing a card from that deck, setting all the players
@@ -43,10 +43,10 @@ class Game {
     this.turn = 0;
   }
 
-  /* A method which takes a single player through their turn. It draws them a card from the 
+  /* A method which takes a single bot player through their turn. It draws them a card from the 
   deck, calls their own play turn method, and adds one to the turn tracker. */
 
-  playTurn(player, target) {
+  playBotTurn(player, target) {
     console.log(`Turn number: ${this.turn}.`);
     console.log(
       `Player ${player.id} starts with a ${player.hand[0].type} in their hand.`
@@ -71,9 +71,9 @@ class Game {
     console.log(`End turn.`);
   }
 
-  /* A method which loops a round of the game, letting each player take a turn if their status is set as active. */
+  /* A method which loops a round of the game for bots, letting each player take a turn if their status is set as active. */
 
-  playRound() {
+  playBotRound() {
     while (this.getActivePlayers().length > 1 && this.deck.cards.length > 0) {
       const turnPointer = this.calculateTurnPointer();
       const player = this.players[turnPointer];
@@ -97,13 +97,48 @@ class Game {
 
   getActivePlayers() {
     const activePlayers = this.players.filter(
-      player => player.status === "active"
+      (player) => player.status === "active"
     );
     return activePlayers;
   }
 
   calculateTurnPointer() {
     return this.turn % this.players.length;
+  }
+
+  /* The checkWinner method uses the getActivePlayers method on the game to check whether there is only
+one active player remaining. If there is only one active player remaining after a turn has been 
+completed, that player has won the game. */
+
+  checkWinner() {
+    if (this.getActivePlayers().length === 1) {
+      const winner = this.getActivePlayers();
+      console.log(`Player ${winner[0].id} wins!`);
+      return winner[0].incrementScore();
+    }
+    if (this.deck.cards.length === 0) {
+      const player0CardValue = this.players[0].hand[0].value;
+      const player1CardValue = this.players[1].hand[1].value;
+      if (player0CardValue > player1CardValue) {
+        return this.players[0].incrementScore();
+      } else if (player1CardValue > player0CardValue) {
+        return this.players[1].incrementScore();
+      } else return;
+    }
+  }
+
+  /* The playTurn method resolves the game state after a player decides which of the two cards in their hand they want to play. 
+  The current player's turn is determined using the calculateTurnPointer method. The turn counter is incremented, and the target 
+  player is identified in opposition to whichever player is currently taking their turn. This logic will only work for a 2 player
+  game! */
+
+  playTurn(card) {
+    const turnPointer = this.calculateTurnPointer();
+    this.turn++;
+    const player = this.players[turnPointer];
+    const target =
+      this.players[turnPointer].id === 0 ? this.players[1] : this.players[0];
+    player.playTurn(card, target, this.deck);
   }
 }
 

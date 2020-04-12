@@ -36,14 +36,8 @@ function drawCard(game, id) {
 // The play card function plays the card from a player's hand that they have chosen.
 
 function playCard(game, card) {
-  const turnPointer = game.calculateTurnPointer();
-  game.turn++;
-  console.log("turnPointer:", turnPointer);
-  const deck = game.deck;
-  const player = game.players[turnPointer];
-  const target =
-    game.players[turnPointer].id === 0 ? game.players[1] : game.players[0];
-  player.playTurn(card, target, deck);
+  game.playTurn(card);
+  game.checkWinner();
 }
 
 module.exports = {
