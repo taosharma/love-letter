@@ -36,6 +36,7 @@ function App() {
   }
 
   function playCard(card) {
+    console.log(`Player ${playerId} has played a:`, card);
     connection.emit("playCard", { id: playerId, card: card });
   }
 
@@ -54,10 +55,10 @@ function App() {
   return (
     <main className="App">
       <section className={css.playerContainer}>
-        <Player {...player} />
+        <Player {...player} playerId={playerId} playCard={playCard} />
       </section>
       <section className={css.opponentContainer}>
-        <Player {...opponent} playCard={playCard} />
+        <Player {...opponent} playerId={playerId} />
       </section>
       <section className={css.deckContainer}>
         <Deck {...deck} />

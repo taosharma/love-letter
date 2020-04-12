@@ -29,19 +29,21 @@ function getDeck(game) {
 
 // The drawCard function allows a player to draw a card from the deck.
 
-function drawCard(game, index) {
-  game.players[index].drawCard(game.deck);
+function drawCard(game, id) {
+  game.players[id].drawCard(game.deck);
 }
 
 // The play card function plays the card from a player's hand that they have chosen.
 
 function playCard(game, card) {
   const turnPointer = game.calculateTurnPointer();
+  game.turn++;
+  console.log("turnPointer:", turnPointer);
   const deck = game.deck;
   const player = game.players[turnPointer];
   const target =
     game.players[turnPointer].id === 0 ? game.players[1] : game.players[0];
-  player.playCard(card, target, deck);
+  player.playTurn(card, target, deck);
 }
 
 module.exports = {

@@ -50,18 +50,20 @@ game.on("connection", (socket) => {
     currentGame = newGame;
   });
 
-  socket.on("drawCard", (socket) => {
-    console.log(`Player ${socket.id} has drawn a card`);
-    drawCard(currentGame, socket.id);
+  socket.on("drawCard", (event) => {
+    console.log(`Player ${event.id} has drawn a card`);
+    drawCard(currentGame, event.id);
     game.emit("updateGame", {
       players: [getPlayer(currentGame, 0), getPlayer(currentGame, 1)],
       deck: getDeck(currentGame),
     });
   });
 
-  socket.on("playCard", (socket) => {
-    console.log(`Player ${socket.id} has played a card`);
-    playCard(currentGame, socket.card);
+  socket.on("playCard", (event) => {
+    console.log(
+      `Player ${event.id} has played their card in position ${event.card}`
+    );
+    playCard(currentGame, event.card);
     game.emit("updateGame", {
       players: [getPlayer(currentGame, 0), getPlayer(currentGame, 1)],
       deck: getDeck(currentGame),

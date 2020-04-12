@@ -8,7 +8,7 @@ const { Princess } = require(`../gameCards/Princess.js`);
 // The player class, which holds the information associated with a player in a game of Love Letter.
 
 function getCardIndex(hand, cardType) {
-  return hand.findIndex(card => card instanceof cardType);
+  return hand.findIndex((card) => card instanceof cardType);
 }
 
 function forceCountess(hand) {
@@ -106,12 +106,12 @@ class Player {
   }
 
   showHandString() {
-    const hand = this.hand.map(card => card.type);
+    const hand = this.hand.map((card) => card.type);
     return hand;
   }
 
   showDiscardString() {
-    const discard = this.discard.map(card => card.type);
+    const discard = this.discard.map((card) => card.type);
     return discard;
   }
 }

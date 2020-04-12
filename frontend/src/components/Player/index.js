@@ -21,7 +21,7 @@ function Player({
           Status: {status} Score: {score} Protected: {protection}
         </p>
       </section>
-      <Hand cards={hand} playCard={playCard} />
+      {id === playerId && <Hand cards={hand} playCard={playCard} />}
       <Discard cards={discard} />
     </>
   );
