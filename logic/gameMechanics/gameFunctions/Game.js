@@ -46,7 +46,7 @@ class Game {
   /* A method which takes a single bot player through their turn. It draws them a card from the 
   deck, calls their own play turn method, and adds one to the turn tracker. */
 
-  playBotTurn(player, target) {
+  playTurn(player, target) {
     console.log(`Turn number: ${this.turn}.`);
     console.log(
       `Player ${player.id} starts with a ${player.hand[0].type} in their hand.`
@@ -73,7 +73,7 @@ class Game {
 
   /* A method which loops a round of the game for bots, letting each player take a turn if their status is set as active. */
 
-  playBotRound() {
+  playRound() {
     while (this.getActivePlayers().length > 1 && this.deck.cards.length > 0) {
       const turnPointer = this.calculateTurnPointer();
       const player = this.players[turnPointer];
