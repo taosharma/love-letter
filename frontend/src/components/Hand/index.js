@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import Card from "../Card";
+import Card from '../Card';
 
 function Hand({ cards, playCard }) {
   return (
     <section>
       Player Hand:
       {cards.map((card, index) => (
-        <section>
+        <section key={index}>
           <Card card={card} />
           <button onClick={() => playCard(index)}>Play Card</button>
         </section>
@@ -18,7 +18,7 @@ function Hand({ cards, playCard }) {
 
 Hand.defaultProps = {
   cards: [
-    { type: "default type", value: "default value", action: "default action" },
+    { type: 'default type', value: 'default value', action: 'default action' },
   ],
   playCard: () => console.log("You have clicked 'playCard'"),
 };
